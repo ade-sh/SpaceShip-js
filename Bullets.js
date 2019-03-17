@@ -25,7 +25,6 @@ class Bullets{
 		 if(this.bulletY<=-2){
 			 bulletGroup.splice(0,1);
 		 }
-		 
 	 }
 	 
 	 drawBullets(){

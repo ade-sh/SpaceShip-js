@@ -10,11 +10,11 @@ class spaceship
 	set shipY(value){
 		this._shipY=value;
 	}
-	get shipX(){
-		return this._shipX;
-	}
 	get shipY(){
 		return this._shipY;
+	}
+	get shipX(){
+		return this._shipX;
 	}
 	update(){
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {

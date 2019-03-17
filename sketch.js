@@ -6,10 +6,14 @@ let hud;
 let blts;
 let bulletGroup=[];
 let alienGroup=[];
+let isPaused=false;
+let coli;
+let score=0;
 function preload() {
-  //shp = loadImage('https://raw.githubusercontent.com/ade-sh/python-projs/master/Alien/images/ship.bmp');
   shp = loadImage('https://raw.githubusercontent.com/ade-sh/python-projs/master/Alien/assets/ship.bmp');  
+  //shp = loadImage('https://determinately-torqu.000webhostapp.com/Alien%20Game/assets/ship.bmp');
   aln=loadImage('https://raw.githubusercontent.com/ade-sh/SpaceShip-js/master/enemyAlien.bmp');
+  //aln=loadImage('https://determinately-torqu.000webhostapp.com/Alien%20Game/assets/enemyAlien.bmp');
 }
 
 
@@ -31,17 +35,35 @@ function keyPressed(){
 	} 
 	}
 	else if(key==='e'){	
-	alien=new Alien(random(width),-5);
+	        alien=new Alien(random(width),-5);
 			alienGroup.push(alien);
 			alien.drawAlien();
 		}
+		else if(key==='p'){
+			if(!isPaused){
+				isPaused=true;
+				noLoop();
+			}
+			else{
+				isPaused=false;
+				loop();
+			} 
+		}
+}
+
+function mouseMoved() {
+if(mouseX-pmouseX>0){
+	ship.shipX+=20;
+}
+else if(mouseX-pmouseX<0){
+	ship.shipX-=20;
+}
 }
 function setup() {
   createCanvas(600, 600);
   ship=new spaceship(250,554);
-  
-  
   hud=new HUD();
+  coli=new collision();
 }
 
 
@@ -55,30 +77,34 @@ function draw() {
 	for(let i=0;i<bulletGroup.length;i++){
 		bulletGroup[i].update();
 	}
-	for(let j=alienGroup.length-1;j>=0;j--){
+	attack();
+	for(let j=0;j<alienGroup.length;j++){
 		alienGroup[j].update();
 	}
-	attack();
 	hud.update();
 }
 
 function attack(){ 
-	if(alienGroup.length<1){
+	if(alienGroup.length==0){
 		alien=new Alien(random(width),-5);
 		alienGroup.push(alien);
-		print(alienGroup.length);
-	}  
-	
-	for(let l=0;l<alienGroup.length;l++){
-		print("y"+alienGroup[l].alienY);
-		print(alienGroup[l].alienY);
-		if(alienGroup[l].alienY>600){
-			alienGroup.splice(0,1);
-		}/* 
-	 if(l=1 && alienGroup[l].alienY===250){
+	} 
+	for(let l=alienGroup.length-1;l>=0;l--){
+		  if(l<=2 && alienGroup[l].alienY==250){
 			alien=new Alien(random(width),-5);
 			alienGroup.push(alien);
-			print("y"+alienGroup[l].alienY);
-	 }*/
+	 }
+		if(alienGroup[l].alienY>600){
+			alienGroup.splice(0,1);
+		}
+		for(let i=0;i<bulletGroup.length;i++){
+			let blas=coli.hits(alienGroup[l].alienX,alienGroup[l].alienY,bulletGroup[i].bulletX,bulletGroup[i].bulletY);
+				if(blas){
+					alienGroup.splice(l-1,1);
+					bulletGroup.splice(i-1,1);
+					score++;
+					text('BOOM',alienGroup[l].alienX,alienGroup[l].alienY)
+				}
+		}
 	}
 }
