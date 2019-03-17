@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<OEMInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+<Description>Test FFU generation for {SOC TYPE} with build number XXXXX</Description> 
+<SOC>QC8227</SOC> 
+<SV>{SV_NAME}</SV> 
+<Device>{DEVICE_NAME}</Device> 
+<ReleaseType>Test</ReleaseType> 
+<BuildType>fre</BuildType> 
+<SupportedLanguages>
+  <UserInterface>
+      <Language>en-IN</Language> 
+  </UserInterface>
+  <Keyboard>
+     <Language>en-IN</Language> 
+  </Keyboard>
+  <Speech>
+    <Language>en-IN</Language> 
+  </Speech>
+</SupportedLanguages>
+<BootUILanguage>en-IN</BootUILanguage> 
+<BootLocale>en-IN</BootLocale> 
+<Resolutions>
+  <Resolution>480x800</Resolution> 
+</Resolutions>
+<AdditionalFMs>
+  <AdditionalFM>%WPDKCONTENTROOT%\FMFiles\MSOptionalFeatures.xml</AdditionalFM> 
+  <!-- Add OEM FM files here -->
+</AdditionalFMs>
+<Features>
+  <Microsoft>
+    <Feature>CODEINTEGRITY_TEST</Feature> 
+    <Feature>PRODUCTION_CORE</Feature> 
+    <Feature>BOOTKEYACTIONS_RETAIL</Feature> 
+  </Microsoft>
+<!-- Insert OEM\SOC features here
+  <OEM>
+    <Feature>xxx</Feature>
+  </OEM>
+-->
+</Features>
+</OEMInput>
