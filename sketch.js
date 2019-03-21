@@ -51,7 +51,7 @@ function keyPressed(){
 		}
 }
 
-function mouseMoved() {
+function mouseDragged() {
 if(mouseX-pmouseX>0){
 	ship.shipX+=20;
 }
@@ -82,29 +82,33 @@ function draw() {
 		alienGroup[j].update();
 	}
 	hud.update();
-}
+	}
 
-function attack(){ 
+function attack(){	
 	if(alienGroup.length==0){
 		alien=new Alien(random(width),-5);
 		alienGroup.push(alien);
 	} 
 	for(let l=alienGroup.length-1;l>=0;l--){
-		  if(l<=2 && alienGroup[l].alienY==250){
+		  
+		  if(alienGroup.length == 1 && alienGroup[l].alienY>=250 && alienGroup[l].alienY<=350){
+
 			alien=new Alien(random(width),-5);
 			alienGroup.push(alien);
-	 }
+			}
+			
 		if(alienGroup[l].alienY>600){
 			alienGroup.splice(0,1);
+			continue;
 		}
-		for(let i=0;i<bulletGroup.length;i++){
-			let blas=coli.hits(alienGroup[l].alienX,alienGroup[l].alienY,bulletGroup[i].bulletX,bulletGroup[i].bulletY);
-				if(blas){
-					alienGroup.splice(l-1,1);
-					bulletGroup.splice(i-1,1);
-					score++;
+		if(alienGroup[l].toDelete){
 					text('BOOM',alienGroup[l].alienX,alienGroup[l].alienY)
-				}
+					alienGroup.splice(l,1);
+					continue;
 		}
 	}
+	for(let i=0;i<bulletGroup.length;i++){		
+			if(bulletGroup[i].toDelete){
+			bulletGroup.splice(i,1)
+	} }
 }

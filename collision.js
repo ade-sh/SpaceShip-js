@@ -46,9 +46,8 @@ class collision{
 	hits(bX,bY,eX,eY){
 		this._bX=bX;this._bY=bY;this._eX=eX;this._eY=eY;
 		var dis=dist(this._eX,this._eY,this._bX,this._bY)
-		//print(dis);
+		
 		if(dis < 30){
-			print('boom');
 			return true;
 		} 
 	}
