@@ -117,6 +117,10 @@ try {
 		alienGroup.push(alien);
 		}
 	let randShp=random(5);
+	if(alienGroup.length<=4 && alienGroup[l].alienY==250 && randShp>4){
+			alien=new Alien(random(width),-5);
+			alienGroup.push(alien);
+		  }
 	for(let l=alienGroup.length-1;l>=0;l--){
 		let boom=coli.damage(ship.shipX,ship.shipY,alienGroup[l].alienX,alienGroup[l].alienY);
 		if(boom){
@@ -127,7 +131,7 @@ try {
 			boom=false;
 			continue;
 		}
-		  if(l<=4 && alienGroup[l].alienY==250){
+		  if(l<=3 && alienGroup[l].alienY==250){
 			alien=new Alien(random(width),-5);
 			alienGroup.push(alien);
 		  }
