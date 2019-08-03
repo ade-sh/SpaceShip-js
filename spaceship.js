@@ -16,6 +16,7 @@ class spaceship
 	get shipX(){
 		return this._shipX;
 	}
+ 	
 	update(){
 	if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
 		this.shipX-=5;
