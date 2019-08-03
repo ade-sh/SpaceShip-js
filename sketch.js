@@ -127,7 +127,7 @@ try {
 			boom=false;
 			continue;
 		}
-		  if(l<=2 && alienGroup[l].alienY==250){
+		  if(l<=4 && alienGroup[l].alienY==250){
 			alien=new Alien(random(width),-5);
 			alienGroup.push(alien);
 		  }
