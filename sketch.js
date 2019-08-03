@@ -117,7 +117,7 @@ try {
 		alienGroup.push(alien);
 		}
 	let randShp=random(5);
-	if(alienGroup.length<=4   && randShp>4){
+	if(alienGroup.length<4 && alienGroup.length>0  && randShp > 3){
 			alien=new Alien(random(width),-5);
 			alienGroup.push(alien);
 		  }
