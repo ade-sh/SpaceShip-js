@@ -117,7 +117,7 @@ try {
 		alienGroup.push(alien);
 		}
 	let randShp=random(5);
-	if(alienGroup.length<4 && alienGroup.length>0  && randShp > 3){
+	if(alienGroup.length<3 && alienGroup.length>0  && randShp > 3){
 			alien=new Alien(random(width),-5);
 			alienGroup.push(alien);
 		  }
@@ -131,7 +131,7 @@ try {
 			boom=false;
 			continue;
 		}
-		  if(l<=3 && alienGroup[l].alienY==250){
+		  if(l<=3 && l>0 && alienGroup[l].alienY==250){
 			alien=new Alien(random(width),-5);
 			alienGroup.push(alien);
 		  }
